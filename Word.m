@@ -84,7 +84,7 @@ classdef Word < handle
             for i = 1:15
                 log_likelihood = current_word.em_step(O);
                 display(sprintf('Step %02d: log_likelihood = %f', i, log_likelihood))
-               % current_word.plot_gaussians(O);
+                current_word.plot_gaussians(O);
             end
         end
         
@@ -137,25 +137,25 @@ classdef Word < handle
             current_word.Sigma = expected_Sigma;
         end
         
-       % function plot_gaussians(current_word, O)
+        function plot_gaussians(current_word, O)
             
             
-         %   plot(O(1, :), O(2, :), 'g+')
-         %   hold on
-          %  plot(current_word.mu(1, :), current_word.mu(2, :), 'r*')
+            plot(O(1, :), O(2, :), 'g+')
+            hold on
+            plot(current_word.mu(1, :), current_word.mu(2, :), 'r*')
 
-          %  for s = 1:size(current_word.Sigma, 3)
-          %      error_ellipse(current_word.Sigma(1:2, 1:2, s), 'mu', current_word.mu(1:2, s), 'style', 'r-', 'conf', .75)
-          %  end
+            for s = 1:size(current_word.Sigma, 3)
+                error_ellipse(current_word.Sigma(1:2, 1:2, s), 'mu', current_word.mu(1:2, s), 'style', 'r-', 'conf', .75)
+            end
 
-         %   axis([0 4000 0 4000])
-         %   hold off
-         %   title(sprintf('Training %s', current_word.name))
-          %  xlabel('F1 [Hz]')
-           % ylabel('F2 [Hz]')
-            %drawnow
+            axis([0 4000 0 4000])
+            hold off
+            title(sprintf('Training %s', current_word.name))
+            xlabel('F1 [Hz]')
+            ylabel('F2 [Hz]')
+            drawnow
             
-          %  pause
-        %end
+           % pause
+        end
     end
 end
